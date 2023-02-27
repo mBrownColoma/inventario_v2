@@ -68,12 +68,12 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
             <div class="form-group">
                 <label for="nombre">Serial</label>
 
-                <input placeholder="SERIAL" class="form-control" type="text" name="serial_equi" id="serial_equi" required>
+                <input placeholder="SERIAL" class="form-control" type="text" name="serial_equipo" id="serial_equipo" required>
             </div>
             <div class="form-group">
 
                 <label for="nombre">Tipo de Equipo</label>
-                <select name="id_tipo_equi">
+                <select name="id_tipo_equipo">
                     <?php echo $option_del_select;
                     ?>
                 </select>
@@ -82,7 +82,7 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
             <div class="form-group">
 
             <label for="nombre">Marca de Equipo</label>
-                <select name="id_mar">
+                <select name="id_marca">
                     <?php echo $option_del_select_brand;
                     ?>
                 </select>
@@ -91,7 +91,7 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
             <div class="form-group">
 
             <label for="nombre">Modelo de Equipo</label>
-                <select name="id_mode">
+                <select name="id_modelo">
                     <?php echo $option_del_select_model;
                     ?>
                 </select>
@@ -100,39 +100,39 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
             <div class="form-group">
                 <label for="nombre">Valor Equipo</label>
 
-                <input placeholder="Valor Equipo" class="form-control" type="number" name="valor_equi" id="valor_equi" required>
+                <input placeholder="Valor Equipo" class="form-control" type="number" name="valor_equipo" id="valor_equipo" required>
 
             </div>
 
             <div class="form-group">
                 <label for="nombre">Fecha Compra Equipo</label>
                 
-                <input placeholder="dd/mm/aaaa" class="form-control" type="text" name="fecha_compra_equi" id="fecha_compra_equi">
+                <input placeholder="dd/mm/aaaa" class="form-control" type="text" name="fecha_compra_equipo" id="fecha_compra_equipo">
 
             </div>
 
             <div class="form-group">
                 <label for="nombre">Procesador Equipo</label>
                 
-                <input placeholder="Procesador Equipo" class="form-control" type="text" name="procesador_equi" id="procesador_equi">
+                <input placeholder="Procesador Equipo" class="form-control" type="text" name="procesador_equipo" id="procesador_equipo">
 
             </div>
 
             <div class="form-group">
                 <label for="nombre">RAM</label>
 
-                <input placeholder="RAM" class="form-control" type="text" name="ram_equi" id="ram_equi">
+                <input placeholder="RAM" class="form-control" type="text" name="ram_equipo" id="ram_equipo">
 
             </div>
             <div class="form-group">
                 <label for="nombre">Tipo de Almacenamiento</label>
 
-                <input placeholder="Tipo de Disco" class="form-control" type="text" name="tipo_hdd_equi" id="tipo_hdd_equi">
+                <input placeholder="Tipo de Disco" class="form-control" type="text" name="tipo_hdd_equipo" id="tipo_hdd_equipo">
 
             <div class="form-group">
                 <label for="nombre">Capacidad de Almacenamiento</label>
 
-                <input placeholder="Capacidad del Disco" class="form-control" type="text" name="capacidad_hdd_equi" id="capacidad_hdd_equi">
+                <input placeholder="Capacidad del Disco" class="form-control" type="text" name="capacidad_hdd_equipo" id="capacidad_hdd_equipo">
 
             </div>
 
