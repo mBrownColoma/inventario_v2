@@ -1,13 +1,15 @@
 <?php include_once "encabezado.php"; 
 include_once "conexion.php";
 $option_del_select = "";
-$option_del_select_brand = "";
-$option_del_select_model = "";
 $sql_tipo = "select * from tipo_equipo";
+
+$option_del_select_brand = "";
 $sql_marca = "select * from marca_equipo";
+
+$option_del_select_model = "";
 $sql_modelo = "select * from modelo_equipo";
 
-//Optencion de tipo del equipo
+//Obtencion de tipo del equipo
 if($result = mysqli_query($mysqli, $sql_tipo)){
     $cont_types = mysqli_num_rows($result);
     if($cont_types>0){
@@ -24,7 +26,7 @@ if($result = mysqli_query($mysqli, $sql_tipo)){
     $option_del_select.="<option value=\"0\">No se obtuvieron datos</option>";
 }
 
-//Optencion de la marca del equipo
+//Obtencion de la marca del equipo
 if($result_marca = mysqli_query($mysqli, $sql_marca)){
     $cont_brand = mysqli_num_rows($result_marca);
     if($cont_brand>0){
@@ -41,7 +43,7 @@ if($result_marca = mysqli_query($mysqli, $sql_marca)){
     $option_del_select_brand.="<option value=\"0\">No se obtuvieron datos</option>";
 }
 
-//Optencion del modelo del equipo
+//Obtencion del modelo del equipo
 if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
     $cont_model = mysqli_num_rows($result_modelo);
     if($cont_model>0){

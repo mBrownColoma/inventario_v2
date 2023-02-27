@@ -22,6 +22,27 @@ $resultado_note = $mysqli->query("select
 
 $equipos = $resultado_note->fetch_all(MYSQLI_ASSOC);
 
+$resultado_torre = $mysqli->query("select
+ e.id_equipo,
+ e.serial_equipo,
+ m.marca_equipo,
+ mo.modelo_equipo,
+ e.procesador_equipo,
+ e.capacidad_hdd_equipo,
+ e.ram_equipo, te.tipo_equipo,
+ e.valor_equipo,
+ e.fecha_compra_equipo 
+ from equipo e 
+ inner join tipo_equipo te
+ on e.id_tipo_equipo = te.id_tipo_equipo
+ inner join marca_equipo m
+ on e.id_marca = m.id_marca_equipo 
+ inner join modelo_equipo mo
+ on e.id_modelo = mo.id_modelo_equipo where e.status_equipo = 1 and e.id_tipo_equipo = 2 order by e.fecha_compra_equipo desc");
+
+$torres = $resultado_torre->fetch_all(MYSQLI_ASSOC);
+
+
 $resultado_cel = $mysqli->query("select
  e.id_equipo,
  e.serial_equipo,
@@ -61,6 +82,46 @@ $resultado_bam = $mysqli->query("select
  on e.id_modelo = mo.id_modelo_equipo where e.status_equipo = 1 and e.id_tipo_equipo = 4 order by e.fecha_compra_equipo desc");
 
 $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
+
+$resultado_print = $mysqli->query("select
+ e.id_equipo,
+ e.serial_equipo,
+ m.marca_equipo,
+ mo.modelo_equipo,
+ e.procesador_equipo,
+ e.capacidad_hdd_equipo,
+ e.ram_equipo, te.tipo_equipo,
+ e.valor_equipo,
+ e.fecha_compra_equipo 
+ from equipo e 
+ inner join tipo_equipo te
+ on e.id_tipo_equipo = te.id_tipo_equipo
+ inner join marca_equipo m
+ on e.id_marca = m.id_marca_equipo 
+ inner join modelo_equipo mo
+ on e.id_modelo = mo.id_modelo_equipo where e.status_equipo = 1 and e.id_tipo_equipo = 3 order by e.fecha_compra_equipo desc");
+
+$prints = $resultado_print->fetch_all(MYSQLI_ASSOC);
+
+$resultado_screen = $mysqli->query("select
+ e.id_equipo,
+ e.serial_equipo,
+ m.marca_equipo,
+ mo.modelo_equipo,
+ e.procesador_equipo,
+ e.capacidad_hdd_equipo,
+ e.ram_equipo, te.tipo_equipo,
+ e.valor_equipo,
+ e.fecha_compra_equipo 
+ from equipo e 
+ inner join tipo_equipo te
+ on e.id_tipo_equipo = te.id_tipo_equipo
+ inner join marca_equipo m
+ on e.id_marca = m.id_marca_equipo 
+ inner join modelo_equipo mo
+ on e.id_modelo = mo.id_modelo_equipo where e.status_equipo = 1 and e.id_tipo_equipo = 6 order by e.fecha_compra_equipo desc");
+
+$screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -314,12 +375,16 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
             <div class="col-12">
                 <a class="btn btn-success btn-sm" href="formulario_registrar_equipo.php">Agregar nuevo
                     equipo</a>
+                <!-- Definicion de pestañas -->
             </div>
             <div id="tabs">
                 <ul>
                     <li><a href="#tabs-1">Equipos Notebooks</a></li>
-                    <li><a href="#tabs-2">Equipos Celulares</a></li>
-                    <li><a href="#tabs-3">Equipos Bam</a></li>
+                    <li><a href="#tabs-2">Equipos PCs Estacionarios</a></li>
+                    <li><a href="#tabs-3">Equipos Celulares</a></li>
+                    <li><a href="#tabs-4">Equipos Bam</a></li>
+                    <li><a href="#tabs-5">Equipos Impresoras</a></li>
+                    <li><a href="#tabs-6">Equipos Monitores</a></li>
                 </ul>
                 <!-- Pestaña notebooks -->
                 <div id="tabs-1">
@@ -348,7 +413,7 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                                                             PROCESADOR</th>
                                                         <th
                                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                            HDD</th>
+                                                            HDD/SSD</th>
                                                         <th
                                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                             RAM</th>
@@ -369,15 +434,13 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                                                 </thead>
                                                 <tbody>
 
-
                                                     <!-- inicio de tabla notebooks -->
 
                                                     <?php
-                      foreach ($equipos as $equipo) { ?>
-
+                                                      foreach ($equipos as $equipo) { ?>
                                                     <tr>
-                                                        <td class="text-xxs">
-                                                            <small><?php echo $equipo["serial_equipo"] ?></small>
+                                                        <td class="mb-0 text-sm">
+                                                            <h6><?php echo $equipo["serial_equipo"] ?></h6>
                                                         </td>
                                                         <td class="text-sm">
                                                             <small><?php echo $equipo["marca_equipo"] ?></small>
@@ -414,6 +477,110 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Pestaña PCs Torres -->
+                <div id="tabs-2">
+
+                    <div class="row">
+                        <div class="container-fluid py-4">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Tabla PCs Estacionarios</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-xxs">SERIAL</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MARCA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MODELO</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            PROCESADOR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            HDD/SSD</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            RAM</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            VALOR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            FECHA COMPRA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            EDITAR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            BAJA</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <!-- inicio de tabla PCs Torres -->
+
+                                                    <?php
+                                                      foreach ($torres as $torre) { ?>
+
+                                                    <tr>
+                                                        <td class="text-xxs">
+                                                            <h6><?php echo $torre["serial_equipo"] ?></h6>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["marca_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-xxs">
+                                                            <small><?php echo $torre["modelo_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["procesador_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["capacidad_hdd_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["ram_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["valor_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $torre["fecha_compra_equipo"] ?></small>
+                                                        </td>
+
+                                                        <td class="text-sm">
+
+                                                            <a href="editer_equipo.php?id=<?php echo $torre["id_equipo"] ?>"
+                                                                class="btn btn-warning" role="button"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <a href="eliminar_equipos.php?id=<?php echo $torre["id_equipo"] ?>"
+                                                                class="btn btn-danger" role="button"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
 
 
                                                 </tbody>
@@ -426,9 +593,8 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                     </div>
                 </div>
 
-
                 <!-- Pestaña celulares -->
-                <div id="tabs-2">
+                <div id="tabs-3">
 
                     <div class="row">
                         <div class="container-fluid py-4">
@@ -467,14 +633,14 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                                                 <tbody>
 
 
-                                                    <!-- inicio de tabla notebooks -->
+                                                    <!-- inicio de tabla celulares -->
 
                                                     <?php
                                                       foreach ($celulares as $celular) { ?>
 
                                                     <tr>
                                                         <td class="text-xxs">
-                                                            <small><?php echo $celular["serial_equipo"] ?></small>
+                                                            <h6><?php echo $celular["serial_equipo"] ?></h6>
                                                         </td>
                                                         <td class="text-sm">
                                                             <small><?php echo $celular["marca_equipo"] ?></small>
@@ -515,15 +681,191 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                 </div>
 
 
-<!-- Pestaña Bam -->
-<div id="tabs-3">
+                <!-- Pestaña Bam -->
+                <div id="tabs-4">
+
+                    <div class="row">
+                        <div class="container-fluid py-4">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Tabla Bams</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-xxs">SERIAL</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MARCA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MODELO</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            VALOR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            FECHA COMPRA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            EDITAR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            BAJA</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <!-- inicio de tabla bams -->
+
+                                                    <?php
+                                  foreach ($bams as $bam) { ?>
+
+                                                    <tr>
+                                                        <td class="text-xxs">
+                                                            <h6><?php echo $bam["serial_equipo"] ?></h6>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $bam["marca_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-xxs">
+                                                            <small><?php echo $bam["modelo_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $bam["valor_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $bam["fecha_compra_equipo"] ?></small>
+                                                        </td>
+
+                                                        <td class="text-sm">
+
+                                                            <a href="editer_equipo.php?id=<?php echo $bam["id_equipo"] ?>"
+                                                                class="btn btn-warning" role="button"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <a href="eliminar_equipos.php?id=<?php echo $bam["id_equipo"] ?>"
+                                                                class="btn btn-danger" role="button"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Pestaña Impresoras -->
+                <div id="tabs-5">
+
+                    <div class="row">
+                        <div class="container-fluid py-4">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Tabla Impresoras</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-xxs">SERIAL</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MARCA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MODELO</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            VALOR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            FECHA COMPRA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            EDITAR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            BAJA</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <!-- inicio de tabla impresoras -->
+
+                                                    <?php
+                                                      foreach ($prints as $print) { ?>
+
+                                                    <tr>
+                                                        <td class="text-xxs">
+                                                            <h6><?php echo $print["serial_equipo"] ?></h6>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $print["marca_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-xxs">
+                                                            <small><?php echo $print["modelo_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $print["valor_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $print["fecha_compra_equipo"] ?></small>
+                                                        </td>
+
+                                                        <td class="text-sm">
+
+                                                            <a href="editer_equipo.php?id=<?php echo $print["id_equipo"] ?>"
+                                                                class="btn btn-warning" role="button"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <a href="eliminar_equipos.php?id=<?php echo $print["id_equipo"] ?>"
+                                                                class="btn btn-danger" role="button"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+                            <!-- Pestaña Monitores -->
+                            <div id="tabs-6">
 
 <div class="row">
     <div class="container-fluid py-4">
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Tabla Bams</h6>
+                    <h6>Tabla Monitores</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -555,36 +897,36 @@ $bams = $resultado_bam->fetch_all(MYSQLI_ASSOC);
                             <tbody>
 
 
-                                <!-- inicio de tabla bams -->
+                                <!-- inicio de tabla monitores -->
 
                                 <?php
-                                  foreach ($bams as $bam) { ?>
+                                  foreach ($screens as $screen) { ?>
 
                                 <tr>
                                     <td class="text-xxs">
-                                        <small><?php echo $bam["serial_equipo"] ?></small>
+                                        <h6><?php echo $screen["serial_equipo"] ?></h6>
                                     </td>
                                     <td class="text-sm">
-                                        <small><?php echo $bam["marca_equipo"] ?></small>
+                                        <small><?php echo $screen["marca_equipo"] ?></small>
                                     </td>
                                     <td class="text-xxs">
-                                        <small><?php echo $bam["modelo_equipo"] ?></small>
+                                        <small><?php echo $screen["modelo_equipo"] ?></small>
                                     </td>
                                     <td class="text-sm">
-                                        <small><?php echo $bam["valor_equipo"] ?></small>
+                                        <small><?php echo $screen["valor_equipo"] ?></small>
                                     </td>
                                     <td class="text-sm">
-                                        <small><?php echo $bam["fecha_compra_equipo"] ?></small>
+                                        <small><?php echo $screen["fecha_compra_equipo"] ?></small>
                                     </td>
 
                                     <td class="text-sm">
 
-                                        <a href="editer_equipo.php?id=<?php echo $bam["id_equipo"] ?>"
+                                        <a href="editer_equipo.php?id=<?php echo $screen["id_equipo"] ?>"
                                             class="btn btn-warning" role="button"><i
                                                 class="fa fa-pencil" aria-hidden="true"></i></a>
                                     </td>
                                     <td class="text-sm">
-                                        <a href="eliminar_equipos.php?id=<?php echo $bam["id_equipo"] ?>"
+                                        <a href="eliminar_equipos.php?id=<?php echo $screen["id_equipo"] ?>"
                                             class="btn btn-danger" role="button"><i
                                                 class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
