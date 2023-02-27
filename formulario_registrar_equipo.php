@@ -62,7 +62,7 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
 
 <div class="row">
     <div class="col-12">
-        <h1>Registrar Nuevo Equipo</h1>
+        <h2>Registrar Nuevo Equipo</h2>
 
         <form action="registrar_equipo_nuevo.php" method="POST">
             <div class="form-group">
@@ -101,8 +101,6 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
                 <label for="nombre">Valor Equipo</label>
 
                 <input placeholder="Valor Equipo" class="form-control" type="number" name="valor_equipo" id="valor_equipo" required>
-
-            </div>
 
             <div class="form-group">
                 <label for="nombre">Fecha Compra Equipo</label>
