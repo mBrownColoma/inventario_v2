@@ -1,5 +1,30 @@
 
-<?php include_once "encabezado.php"; ?>
+<?php include_once "encabezado.php"; 
+include_once "conexion.php";
+
+$option_del_select = "";
+$sql_tipo = "select * from tipo_empresa;";
+
+
+//Optencion de tipo de empresa
+if($result = mysqli_query($mysqli, $sql_tipo)){
+    $cont_types = mysqli_num_rows($result);
+    if($cont_types>0){
+        while($listtypes = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $id = $listtypes['id_tipo_empresa'];
+            $type_company = $listtypes['tipo_empresa'];
+            $option_del_select.="<option value=\"$id\">$type_company</option>";
+
+        }
+    }else{
+    $option_del_select.="<option value=\"0\">No hay Tipo de Empresa Registrad</option>";
+    }
+}else{
+    $option_del_select.="<option value=\"0\">No se obtuvieron datos</option>";
+}
+?>
+
+
 <div class="row">
     <div class="col-12">
         <h1>Registrar Nuevo Colaborador</h1>
@@ -49,6 +74,15 @@
 
             </div>
 
+            <div class="form-group">
+
+              <label for="nombre">Tipo de Empresa</label>
+                <select name="id_empresa">
+                    <?php echo $option_del_select;
+                    ?>
+                </select>
+              </div>
+
              <div class="form-group">
                 <label for="nombre">Celular MDA</label>
 
@@ -74,7 +108,11 @@
 
             </div>
        
-            <div class="form-group"><button class="btn btn-success">Guardar</button></div>
+            <div class="form-group">
+              <button class="btn btn-success">Guardar</button>
+            <a class="btn btn-warning" href="usuarios.php">Volver</a>
+          </div>
+            
         </form>
 
 

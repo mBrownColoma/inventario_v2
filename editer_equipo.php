@@ -48,7 +48,7 @@ if (!$equipo) {
 
         <form action="actualizar_equipo.php" method="POST">
 
-            <input type="hidden" name="id" value="<?php echo $equipo["e.id_equipo"] ?>">
+            <input type="hidden" name="id" value="<?php echo $equipo["id_equipo"] ?>">
 
              <div class="form-group">
                 <label for="nombre">SERIAL</label>

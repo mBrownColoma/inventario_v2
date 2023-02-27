@@ -136,7 +136,11 @@ if($result_modelo = mysqli_query($mysqli, $sql_modelo)){
 
             </div>
 
-            <div class="form-group"><button class="btn btn-success">Guardar</button></div>
+            <div class="form-group">
+                <button class="btn btn-success">Guardar</button>
+            <a class="btn btn-warning" href="equipamiento.php">Volver</a>
+        </div>
+            
         </form>
 
     </div>

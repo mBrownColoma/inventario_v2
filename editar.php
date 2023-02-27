@@ -112,7 +112,7 @@ if (!$colaborador) {
       
             <div class="form-group">
                 <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-warning" href="listar.php">Volver</a>
+                <a class="btn btn-warning" href="usuarios.php">Volver</a>
             </div>
 
         </form>
