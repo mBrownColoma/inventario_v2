@@ -37,7 +37,7 @@ $qrimagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($qr
 
 
 $sentencia = $mysqli->prepare("select * from colaborador c
-inner join log_asignacion a 
+inner join asignacion a 
     on c.id_colaborador = a.id_colaborador
 inner join equipo e 
     on e.id_equipo = a.id_equipo
@@ -103,7 +103,7 @@ $sentencia2 = $mysqli->prepare("select * from colaborador c
 inner join log_asignacion la 
 	on la.id_colaborador = c.id_colaborador
  inner join tipo_empresa te 
-	on te.id_tipo_empresa = c.id_empresa WHERE c.id_colaborador = ?");
+	on te.id_tipo_empresa = c.id_empresa WHERE c.id_colaborador = ?  and la.fecha_devolucion IS NULL");
 
 $sentencia2->bind_param("i", $id);
 
@@ -118,7 +118,7 @@ if (!$col) {
 }
 
 $sentencia3 = $mysqli->prepare("select sum(e.valor_equipo) as suma from colaborador c
-inner join log_asignacion a 
+inner join asignacion a 
     on c.id_colaborador = a.id_colaborador
 inner join equipo e 
     on e.id_equipo = a.id_equipo

@@ -206,6 +206,7 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
       <div class="row">
         <div class="col-12">
            <a class="btn btn-success btn-sm" href="formulario_registrar.php">Agregar nuevo Colaborador</a>
+           <a class="btn btn-success btn-sm" href="generar_reporte.php">Generar Reporte</a>
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Tabla Colaboradores</h6>

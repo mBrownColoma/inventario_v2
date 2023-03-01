@@ -44,7 +44,7 @@ inner join marca_equipo ma
     on e.id_marca = ma.id_marca_equipo
 inner join modelo_equipo me 
     on e.id_modelo = me.id_modelo_equipo
-where c.id_colaborador = ?");
+where c.id_colaborador = ? and a.fecha_devolucion IS NOT NULL");
 
 
 
