@@ -16,5 +16,5 @@ $sentencia->bind_param("ii",$estado, $id);
 
 $sentencia->execute();
 
-header("Location: mantenedor.php");
+header("Location: mantenedores.php");
 ?>

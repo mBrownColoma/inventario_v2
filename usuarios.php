@@ -256,7 +256,7 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
                       <td class="align-middle text-center">
                       <a <?php if($colaborador["equipo_devolucioln"] == 0 and $colaborador["equipo_entregado"] == 0 and $colaborador["equipo_colaborador"] == 0  ){ echo "style='display:none;'";} 
 
-                            if($colaborador["equipo_entregado"] == 1 and $colaborador["equipo_devolucioln"] == 1)
+                            if($colaborador["equipo_entregado"] == 1 )
                             {
                                      
                                      echo "href='./pdfeasy/acta_entrega_pdf.php?id=".$colaborador['id_colaborador']."'target='_blank'";

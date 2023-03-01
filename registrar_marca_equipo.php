@@ -28,4 +28,4 @@ $query->execute();
 
 
 //este metodo permite redireccionar a la url que indique
-header("Location: mantenedor.php");
+header("Location: mantenedores.php");

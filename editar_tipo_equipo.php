@@ -46,7 +46,7 @@ if (!$equipo) {
       
             <div class="form-group">
                 <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-warning" href="mantenedor.php">Volver</a>
+                <a class="btn btn-warning" href="mantenedores.php">Volver</a>
             </div>
 
         </form>
