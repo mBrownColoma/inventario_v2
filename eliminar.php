@@ -16,5 +16,5 @@ $sentencia->bind_param("ii",$estado, $id);
 
 $sentencia->execute();
 
-header("Location: listar.php");
+header("Location: usuarios.php");
 ?>

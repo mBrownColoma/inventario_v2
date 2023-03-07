@@ -15,7 +15,7 @@ include_once "conexion.php";
 
     <body>
         <?php
-        
+        date_default_timezone_set('America/Santiago');
         $date = date('d-m-Y');
         $hour = date('H:i');
         $dh = $date.' '.$hour;
@@ -69,7 +69,7 @@ include_once "conexion.php";
 		}
 
         // Configuración en la cabecera
-		header("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+		header("Last-Modified: " . gmdate("D,d M Y") . " GMT");
 		header("Cache-Control: no-cache, must-revalidate");
 		header("Pragma: no-cache");
 		header("Content-type: application/x-msexcel");

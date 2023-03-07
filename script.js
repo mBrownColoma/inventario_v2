@@ -64,3 +64,23 @@ $.post("devolucion_update.php", {
 
         
 }
+
+
+function login()
+{
+/* Para obtener el valor */
+var user = document.getElementById("user").value;//nombre
+var pass = document.getElementById("pass").value;//pass
+//idare
+
+$.post("access_login.php", {//php coneccion access login
+            user: user,
+            pass: pass
+
+        }, function (data, status) {
+       		alert('Usuario Logueado');
+    		windows.location.href="usuarios.php";
+        });
+
+
+}

@@ -14,6 +14,7 @@ $base_de_datos = "inventario_mda";
 
 // instancia del objeto de conexion a la base de datos mediante mysqli
 $mysqli = new mysqli($host, $usuario, $contrasenia, $base_de_datos);
+$mysqli -> set_charset("utf8");
 
 
 if ($mysqli->connect_errno) {

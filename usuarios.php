@@ -1,5 +1,12 @@
 <?php
-include_once "encabezado.php";
+    session_start();
+    $nombre=$_SESSION["name"];
+    $area=$_SESSION["id_area"];
+
+    if(isset($_SESSION["name"])){
+
+    include_once "encabezado.php";
+
 
 $mysqli = include_once "conexion.php";
 $resultado = $mysqli->query("SELECT * FROM colaborador WHERE estado_colaborador = 1 order by nombre_colaborador asc");
@@ -37,6 +44,7 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -70,6 +78,10 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
           </a>
         </li>
         <li class="nav-item">
+<!-- si sesion perfil mostrar o no -->
+<?php
+if($area==1){
+  echo <<< EOT
           <a class="nav-link" href="equipamiento.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -89,6 +101,7 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
             <span class="nav-link-text ms-1">Equipamiento</span>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="asignaciones.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -154,9 +167,11 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
             <span class="nav-link-text ms-1">Mantenedor Equipos</span>
           </a>
         </li>
-       
+        EOT;
+      }
+      ?>
         <li class="nav-item">
-          <a class="nav-link  " href="">
+          <a class="nav-link  " href="access_exit.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>spaceship</title>
@@ -210,6 +225,7 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Tabla Colaboradores</h6>
+              
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -342,3 +358,9 @@ $colaboradores = $resultado->fetch_all(MYSQLI_ASSOC);
 </body>
 
 </html>
+<?php
+
+}else{
+header('location: login.php');
+}
+?>

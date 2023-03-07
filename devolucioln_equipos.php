@@ -71,7 +71,7 @@ $equipos = $resultado->fetch_all(MYSQLI_ASSOC);
         </table>
 
              <div class="form-group">
-                <a class="btn btn-warning" href="devolucion.php">Volver</a>
+                <a class="btn btn-warning" href="devoluciones.php">Volver</a>
             </div>
     </div>
 </div>
