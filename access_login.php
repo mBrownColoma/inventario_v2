@@ -9,12 +9,17 @@ if(!empty($_POST["user"])AND $_POST["pass"]){
         
         $_SESSION["name"]=$datosobtenidos->username;
         $_SESSION["id_area"]=$datosobtenidos->id_area;
+
+        if($_SESSION["id_area"]==3){
+            header("location: equipamiento.php");
+        }else{
         // echo($_SESSION["name"]);
         // echo($_SESSION["id_area"]);
         header("location: usuarios.php");
         // echo"funca";
+        }
     } else {
-        header("location: login.php");
+        header("location: index.php");
     }
 }
 ?>

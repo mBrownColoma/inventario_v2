@@ -3,13 +3,13 @@
 
 //parametros de conexion a base de datos
 	//indica la ruta o direccion del servidor
-$host = "127.0.0.1";
+	$host = "162.240.215.51";
 	//usuario de base de datos
-$usuario = "root";
+$usuario = "wwtimd_inventario_mda";
 	//clave de usuario de base datos
-$contrasenia = "";
+$contrasenia = "wwtimd_inventario_mda";
 	//nombre de la base de datos
-$base_de_datos = "inventario_mda";
+$base_de_datos = "wwtimd_inventario_mda";
 
 
 // instancia del objeto de conexion a la base de datos mediante mysqli

@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    $nombre=$_SESSION["name"];
+    $area=$_SESSION["id_area"];
+
+    if(isset($_SESSION["name"])){
 $mysqli = include_once "conexion.php";
 
 $resultado = $mysqli->query("select * from tipo_equipo where status_tipo_equipo = 1");
@@ -216,7 +221,7 @@ $modelos = $resultado3->fetch_all(MYSQLI_ASSOC);
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link  " href="">
+                    <a class="nav-link  " href="access_exit.php">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1"
@@ -320,7 +325,8 @@ $modelos = $resultado3->fetch_all(MYSQLI_ASSOC);
                                                             <small><?php echo $modelo["id_modelo_equipo"] ?></small>
                                                         </td>
                                                         <td class="text-sm">
-                                                            <small><?php echo $modelo["modelo_equipo"] ?></small></td>
+                                                            <small><?php echo $modelo["modelo_equipo"] ?></small>
+                                                        </td>
 
 
                                                         <td>
@@ -383,9 +389,11 @@ $modelos = $resultado3->fetch_all(MYSQLI_ASSOC);
                                                 <tr>
 
                                                     <td class="text-sm">
-                                                        <small><?php echo $equipo["id_tipo_equipo"] ?></small></td>
+                                                        <small><?php echo $equipo["id_tipo_equipo"] ?></small>
+                                                    </td>
                                                     <td class="text-sm">
-                                                        <small><?php echo $equipo["tipo_equipo"] ?></small></td>
+                                                        <small><?php echo $equipo["tipo_equipo"] ?></small>
+                                                    </td>
 
 
                                                     <td>
@@ -448,9 +456,11 @@ $modelos = $resultado3->fetch_all(MYSQLI_ASSOC);
                                                     <tr>
 
                                                         <td class="text-sm">
-                                                            <small><?php echo $marca["id_marca_equipo"] ?></small></td>
+                                                            <small><?php echo $marca["id_marca_equipo"] ?></small>
+                                                        </td>
                                                         <td class="text-sm">
-                                                            <small><?php echo $marca["marca_equipo"] ?></small></td>
+                                                            <small><?php echo $marca["marca_equipo"] ?></small>
+                                                        </td>
 
 
                                                         <td>
@@ -534,3 +544,10 @@ $modelos = $resultado3->fetch_all(MYSQLI_ASSOC);
 </body>
 
 </html>
+
+<?php
+
+}else{
+header('location: index.php');
+}
+?>

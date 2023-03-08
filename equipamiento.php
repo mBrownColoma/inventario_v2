@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    $nombre=$_SESSION["name"];
+    $area=$_SESSION["id_area"];
+
+    if(isset($_SESSION["name"])){
 include_once "encabezado.php";
 
 $mysqli = include_once "conexion.php";
@@ -168,6 +173,9 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <?php
+                    if($area==1){
+                        echo <<< ASD
                     <a class="nav-link" href="usuarios.php">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -198,6 +206,9 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                     </a>
                 </li>
                 <li class="nav-item">
+                ASD;
+            }
+            ?>
                     <a class="nav-link active" href="equipamiento.php">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -225,6 +236,9 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                     </a>
                 </li>
                 <li class="nav-item">
+                <?php
+                    if($area==1){
+                        echo <<< ASD
                     <a class="nav-link" href="asignaciones.php">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -316,7 +330,10 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link  " href="">
+                ASD;
+            }
+            ?>
+                    <a class="nav-link  " href="access_exit.php">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1"
@@ -372,11 +389,22 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
         </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
+
+        <?php
+if($area==1){
+  echo <<< EOT
             <div class="col-12">
+
                 <a class="btn btn-success btn-sm" href="formulario_registrar_equipo.php">Agregar nuevo
                     equipo</a>
+                    
                 <!-- Definicion de pestañas -->
-            </div>
+            
+            EOT;
+        }
+        ?>
+<a class="btn btn-success btn-sm" href="generar_reporte_equipo.php">Generar Informe</a>
+</div>
             <div id="tabs">
                 <ul>
                     <li><a href="#tabs-1">Equipos Notebooks</a></li>
@@ -413,9 +441,6 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                                                             PROCESADOR</th>
                                                         <th
                                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                            HDD/SSD</th>
-                                                        <th
-                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                             RAM</th>
                                                         <th
                                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -424,10 +449,21 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                             FECHA COMPRA</th>
                                                         <th
-                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                            <?php 
+                                                        if($area==3){
+                                                        echo'style="display: none;"';
+                                                        
+                                                        }?>>
                                                             EDITAR</th>
                                                         <th
-                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                            <?php 
+                                                        if($area==3){
+                                                        echo'style="display: none;"';
+                                                        
+                                                        }?>
+                                                            >
                                                             BAJA</th>
 
                                                     </tr>
@@ -440,7 +476,7 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                                                       foreach ($equipos as $equipo) { ?>
                                                     <tr>
                                                         <td class="mb-0 text-sm">
-                                                            <h6><?php echo $equipo["serial_equipo"] ?></h6>
+                                                            <h7><?php echo $equipo["serial_equipo"] ?></h7>
                                                         </td>
                                                         <td class="text-sm">
                                                             <small><?php echo $equipo["marca_equipo"] ?></small>
@@ -464,18 +500,34 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                                                             <small><?php echo $equipo["fecha_compra_equipo"] ?></small>
                                                         </td>
 
-                                                        <td class="text-sm">
+                                                        
 
+                                                        <td class="text-sm" 
+                                                        <?php 
+                                                        if($area==3){
+                                                        echo'style="display: none;"';
+                                                        
+                                                        }?>
+                                                        >
                                                             <a href="editer_equipo.php?id=<?php echo $equipo["id_equipo"] ?>"
                                                                 class="btn btn-warning" role="button"><i
                                                                     class="fa fa-pencil" aria-hidden="true"></i></a>
                                                         </td>
-                                                        <td class="text-sm">
+                                                        <td class="text-sm"
+                                                        <?php 
+                                                        if($area==3){
+                                                        echo'style="display: none;"';
+                                                        
+                                                        }?>
+                                                        >
                                                             <a href="eliminar_equipos.php?id=<?php echo $equipo["id_equipo"] ?>"
                                                                 class="btn btn-danger" role="button"><i
                                                                     class="fa fa-trash" aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
+
+                                                    
+                                                    
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
@@ -856,93 +908,93 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
                     </div>
                 </div>
 
-            
-                            <!-- Pestaña Monitores -->
-                            <div id="tabs-6">
 
-<div class="row">
-    <div class="container-fluid py-4">
-        <div class="col-12">
-            <div class="card mb-4">
-                <div class="card-header pb-0">
-                    <h6>Tabla Monitores</h6>
-                </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-xxs">SERIAL</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        MARCA</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        MODELO</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        VALOR</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        FECHA COMPRA</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        EDITAR</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        BAJA</th>
+                <!-- Pestaña Monitores -->
+                <div id="tabs-6">
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div class="row">
+                        <div class="container-fluid py-4">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Tabla Monitores</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-xxs">SERIAL</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MARCA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            MODELO</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            VALOR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            FECHA COMPRA</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            EDITAR</th>
+                                                        <th
+                                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                            BAJA</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
 
-                                <!-- inicio de tabla monitores -->
+                                                    <!-- inicio de tabla monitores -->
 
-                                <?php
+                                                    <?php
                                   foreach ($screens as $screen) { ?>
 
-                                <tr>
-                                    <td class="text-xxs">
-                                        <h6><?php echo $screen["serial_equipo"] ?></h6>
-                                    </td>
-                                    <td class="text-sm">
-                                        <small><?php echo $screen["marca_equipo"] ?></small>
-                                    </td>
-                                    <td class="text-xxs">
-                                        <small><?php echo $screen["modelo_equipo"] ?></small>
-                                    </td>
-                                    <td class="text-sm">
-                                        <small><?php echo $screen["valor_equipo"] ?></small>
-                                    </td>
-                                    <td class="text-sm">
-                                        <small><?php echo $screen["fecha_compra_equipo"] ?></small>
-                                    </td>
+                                                    <tr>
+                                                        <td class="text-xxs">
+                                                            <h6><?php echo $screen["serial_equipo"] ?></h6>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $screen["marca_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-xxs">
+                                                            <small><?php echo $screen["modelo_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $screen["valor_equipo"] ?></small>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <small><?php echo $screen["fecha_compra_equipo"] ?></small>
+                                                        </td>
 
-                                    <td class="text-sm">
+                                                        <td class="text-sm">
 
-                                        <a href="editer_equipo.php?id=<?php echo $screen["id_equipo"] ?>"
-                                            class="btn btn-warning" role="button"><i
-                                                class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    </td>
-                                    <td class="text-sm">
-                                        <a href="eliminar_equipos.php?id=<?php echo $screen["id_equipo"] ?>"
-                                            class="btn btn-danger" role="button"><i
-                                                class="fa fa-trash" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <?php } ?>
+                                                            <a href="editer_equipo.php?id=<?php echo $screen["id_equipo"] ?>"
+                                                                class="btn btn-warning" role="button"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td class="text-sm">
+                                                            <a href="eliminar_equipos.php?id=<?php echo $screen["id_equipo"] ?>"
+                                                                class="btn btn-danger" role="button"><i
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
 
 
-                            </tbody>
-                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 
 
             </div>
@@ -1001,3 +1053,10 @@ $screens = $resultado_screen->fetch_all(MYSQLI_ASSOC);
 </body>
 
 </html>
+
+<?php
+
+}else{
+header('location: index.php');
+}
+?>
